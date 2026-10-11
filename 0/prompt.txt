@@ -1,0 +1,89 @@
+<pasted_content id="eb90">
+0.07s
+Coordinator
+Instruction received: "Sharma Kirana's settlement for txn #48213 failed. Investigate and resolve."
+0.08s
+Coordinator
+get_settlement(48213)
+0.32s
+Coordinator
+Case: Beneficiary validation failed: account does not exist at branch for IFSC HDFC0001234
+0.32s
+Coordinator
+Plan: Investigation finds the cause, Resolution applies only what policy allows and verifies it against the real system, Closure documents and informs the merchant.
+0.33s
+Coordinator
+Checkpoint saved: ckpt_1_5a8b35e (plan)
+0.34s
+Investigation
+search_memory(IFSC_ACCOUNT_MISMATCH, memory)
+0.49s
+Investigation
++Memory hit: 3 similar cases resolved. Skipping the full sweep, running 1 targeted check.
+0.49s
+Investigation
+verify_beneficiary(50100234567890, HDFC0001234)
+1.16s
+Investigation
+Finding (97%): The IFSC on file (HDFC0001234) is wrong. Account **********7890 is held at State Bank of India (SBIN0000456).
+1.17s
+Investigation
+Checkpoint saved: ckpt_2_94a69a8 (diagnosis)
+1.26s
+Coordinator
+Decision: correct_ifsc. The IFSC on file (HDFC0001234) is wrong. Account **********7890 is held at State Bank of India (SBIN0000456).
+1.64s
+Resolution
+Checkpoint saved: ckpt_3_430f189 (pre-fix)
+1.64s
+Resolution
+policy_check(update_bank_details)
+1.84s
+Resolution
+Checkpoint saved: ckpt_4_8aa1b0e (policy)
+1.84s
+Resolution
+update_bank_ifsc(m_1001, SBIN0000456)
+2.21s
+Resolution
+Checkpoint saved: ckpt_5_c5b456e (update_ifsc)
+2.23s
+Resolution
+retrigger_settlement(48213, NEFT, idem_run_fc437823_48213)
+2.65s
+Resolution
+Checkpoint saved: ckpt_6_299120b (retrigger)
+2.67s
+Resolution
+get_settlement(48213, verify)
+2.95s
+Resolution
+Status is PROCESSING, checking again.
+3.25s
+Resolution
+get_settlement(48213, verify)
+3.57s
+Resolution
++status=SETTLED, INR 84,250 confirmed via API
+3.63s
+Closure
+write_kb(48213)
+3.99s
+Closure
++Knowledge base article KB-48213 written.
+3.99s
+Closure
+Case is verified. Waiting up to 15 s for llama3.2 to write the email subject line.
+6.34s
+Closure
+notify_merchant(m_1001, email)
+6.59s
+Closure
++Merchant notified by email. Subject line written by llama3.2.
+6.59s
+Closure
+Checkpoint saved: ckpt_7_6540fcb (closed)
+6.60s
+Closure
+Memory: pattern saved, so the next similar case starts with this playbook.
+</pasted_content id="eb90">
