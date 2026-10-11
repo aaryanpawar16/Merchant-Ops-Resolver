@@ -1,0 +1,23 @@
+<pasted_content id="eb90">
+I've built the plan. The short version: your $15 per-merchant fee is the most unrealistic number in it. That fee is what makes the model look like a rocket ship. At a price customers would actually pay, $120k of cash runs out in August 2027.
+
+One gap first: your message still has the placeholder <paste the "Copy inputs for cfo.ai" block here>, so no prototype measurements came through. I estimated case volume, auto-resolution rate and model cost per case instead (listed below). Paste the block and I'll swap in your real numbers.
+
+What I built
+
+
+
+
+
+: your prices, your $5.07 human cost, plus my estimates, all editable.
+
+
+
+: customers → merchants → cases → auto-resolved → revenue, split into payment aggregators and fintechs.
+
+
+
+: model, es
+</pasted_content id="eb90">
+
+                   https://cfo.ai/s/L3hVlRsxukFelZFt
