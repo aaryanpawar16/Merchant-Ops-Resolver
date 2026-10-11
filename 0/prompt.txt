@@ -1,0 +1,18 @@
+<pasted_content id="eb90">
+PS C:\WINDOWS\system32> entire version
+Entire CLI 0.11.4
+Go version: go1.27.1
+OS/Arch: windows/amd64
+PS C:\WINDOWS\system32> Get-Command entire
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Application     entire.exe                                         0.11.4.0   C:\Users\LENOVO\.local\bin\entire.exe
+
+
+PS C:\WINDOWS\system32> Get-Command git-remote-entire
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Application     git-remote-entire.exe                              0.11.4.0   C:\Users\LENOVO\.local\bin\git-remote-...
+</pasted_content id="eb90">
