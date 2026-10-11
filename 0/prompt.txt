@@ -1,0 +1,1 @@
+ok now i want that i can give input of data from the website itself, by uploading a .csv file or like files, then our agent will process it accordingly and show the results, also i want u to suggest more differentiating winning features that will make us win this hackathon
