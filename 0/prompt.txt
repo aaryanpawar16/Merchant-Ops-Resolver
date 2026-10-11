@@ -1,0 +1,106 @@
+<pasted_content id="eb90">
+0.04s
+Coordinator
+Instruction received: "Iyer Sweets' settlement for txn #48231 was held by risk. Investigate and release it if it is safe."
+0.04s
+Coordinator
+get_settlement(48231)
+0.25s
+Coordinator
+Case: Settlement held by risk engine: transaction velocity 4.1x above merchant baseline
+0.25s
+Coordinator
+Plan: Investigation finds the cause, Resolution applies only what policy allows and verifies it against the real system, Closure documents and informs the merchant.
+0.25s
+Coordinator
+Entire: saved ckpt_1_156f310 (plan)
+0.26s
+Investigation
+search_memory(RISK_VELOCITY_SPIKE, entire)
+0.41s
+Investigation
+No similar case on record. Sweeping payments, KYC and risk data (3 checks).
+0.41s
+Investigation
+get_merchant_profile(m_1003)
+0.68s
+Investigation
+get_kyc(m_1003)
+0.90s
+Investigation
+get_risk_signals(m_1003)
+1.27s
+Investigation
+Finding (85%): The 4.1x volume is a festive-season order spike, not fraud.
+1.27s
+Investigation
+Finding (70%): 14 payments in 6 minutes share one device fingerprint (INR 8,300), which looks like card testing.
+1.27s
+Investigation
+!Two findings point in opposite directions. Handing the conflict to the Coordinator.
+1.28s
+Investigation
+Entire: saved ckpt_2_4bb3a4f (diagnosis)
+1.28s
+Coordinator
+!Disagreement: seasonal_spike 85% vs device_cluster 70%.
+1.28s
+Coordinator
++Ruling: Both findings hold. The suspicious cluster is 3.9% of the settlement, so release INR 2,04,100 and retain INR 8,300 for human review.
+1.29s
+Coordinator
+Entire: saved ckpt_3_3f0bcaf (arbitration)
+1.29s
+Coordinator
+Decision: partial_release. Both findings hold. The suspicious cluster is 3.9% of the settlement, so release INR 2,04,100 and retain INR 8,300 for human review.
+1.30s
+Resolution
+Entire: saved ckpt_4_7dbd73b (pre-fix)
+1.30s
+Resolution
+policy_check(release_hold, 204100)
+1.38s
+Resolution
+Entire: saved ckpt_5_a13c99d (policy)
+1.38s
+Resolution
+release_hold(48231, 204100, 8300, idem_run_ee57224a_48231)
+1.79s
+Resolution
+Entire: saved ckpt_6_98a88de (release)
+1.79s
+Resolution
+get_settlement(48231, verify)
+2.06s
+Resolution
+Status is PROCESSING, checking again.
+2.38s
+Resolution
+get_settlement(48231, verify)
+2.66s
+Resolution
++status=SETTLED, INR 2,04,100 confirmed via API
+2.85s
+Closure
+write_kb(48231)
+3.18s
+Closure
++Knowledge base article KB-48231 written.
+3.18s
+Closure
+Case is verified. Waiting up to 15 s for llama2 to write the email subject line.
+13.35s
+Closure
+notify_merchant(m_1003, email)
+13.63s
+Closure
++Merchant notified by email. Subject line written by llama2.
+13.63s
+Closure
+Entire: saved ckpt_7_78d801d (closed)
+13.64s
+Closure
+Entire: pattern saved, so the next similar case starts with this playbook.
+</pasted_content id="eb90">
+
+                        the right space is lookin  empty, move Resolved and verified to right , equal the space
