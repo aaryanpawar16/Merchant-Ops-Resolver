@@ -5,6 +5,7 @@ import { isLinked, site } from "@/lib/site";
 const links = [
   { label: "Case console", href: "/console", internal: true },
   { label: "Batch upload", href: "/console/batch", internal: true },
+  { label: "Scorecard", href: "/eval", internal: true },
   { label: "GitHub", href: site.links.github, internal: false },
   { label: "Demo video", href: site.links.demo, internal: false },
   { label: `${site.hackathon} posts`, href: site.links.posts, internal: false },
