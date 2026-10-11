@@ -1,7 +1,7 @@
 import { BENIGN_RELEASE_CONFIDENCE, MAX_RETAINED_SHARE, type Decision, type Diagnosis } from "@/lib/engine/agents";
 import { AUTO_RELEASE_LIMIT_INR } from "@/lib/engine/tools";
 import type { WhyNot } from "@/lib/engine/types";
-import type { Settlement } from "@/lib/engine/world";
+import type { SettlementView } from "@/lib/engine/world";
 
 const inr = (n: number) => `INR ${n.toLocaleString("en-IN")}`;
 const pct = (n: number) => `${Math.round(n * 100)}%`;
@@ -10,7 +10,7 @@ const LIMIT = inr(AUTO_RELEASE_LIMIT_INR);
 // Explains a decision from the same facts and the same thresholds the Coordinator used. It lists the rule that
 // stopped a more automatic action, and what would have to change for the decision to flip. No model is involved,
 // so it cannot embellish.
-export function explainDecision(s: Settlement, diag: Diagnosis, d: Decision): WhyNot {
+export function explainDecision(s: SettlementView, diag: Diagnosis, d: Decision): WhyNot {
   const top = diag.findings[0];
   const handedOver = (answer: string, blockers: WhyNot["blockers"], wouldChange: string[], confidence: WhyNot["confidence"] = null): WhyNot => ({
     question: "Why was this not fixed automatically?",

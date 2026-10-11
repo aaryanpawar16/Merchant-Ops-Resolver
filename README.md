@@ -120,6 +120,16 @@ Be upfront about this when presenting.
 - **Assumptions:** prices, human handling time and monthly-model inputs in `lib/engine/economics.ts` are assumptions, labelled as such in the console. The plan's cases per merchant (0.15 to 0.20 a month) is an estimate.
 - **The model never decides, and never writes facts.** The local model has no tool calling, so it only writes the subject line of the merchant email (plus a plain-English ruling explanation when it is measured fast enough). The email body is built from verified facts, so the model cannot get a number, a name or a promise wrong. Its subject lines are filtered too: replies ("Re:"), urgency and promises such as "immediately" or "within 24 hours" are rejected and the built-in subject is used instead. Decisions and every state change come from code. On a slow laptop llama2 manages about 3 to 5 tokens per second, which is why its job is kept this small; `llama3.2` is faster.
 
+## Build history
+
+Stated plainly, so it does not have to be inferred from file dates:
+
+- The repository began from `create-next-app` (commit `45295b1`, Oct 9, 21:49 IST). That commit is only the generated scaffold: config files, the favicon and `AGENTS.md`. It predates the hackathon, which began on Oct 10 at 12:00 IST. Files that still show that date are unchanged scaffold files.
+- The landing page (`/`) was built before the Resolver, and before the first build session. It first appears in this repository's history on Oct 11, in `5a12738`.
+- The Resolver itself (the agents, console, batch upload, scorecard, API and tracing) was built in Claude Code sessions starting on Oct 10 at 11:34 IST, just before the noon start. The first product files were written at 11:40 IST.
+- Every commit after the scaffold is dated Oct 10, 18:43 IST or later. The early work was committed as one large commit, `5a12738`, because the work was not committed until Oct 11.
+- Entire was enabled part-way through the build. The earlier session was imported into it, and the later sessions are linked to commits as checkpoints.
+
 ## Landing page data
 
 The trace waterfall, the checkpoint chain and the case-scene timings on the landing page are real. They are generated from two captured runs into `lib/sampleRun.ts`. To refresh them after changing the engine, start the app and run `npm run sample:capture`. Start it with a dummy `NEATLOGS_API_KEY` and `NEATLOGS_ENDPOINT=http://127.0.0.1:9` if you do not want the capture runs in your real neatlogs project.

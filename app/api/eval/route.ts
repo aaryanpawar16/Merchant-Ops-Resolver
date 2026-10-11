@@ -12,13 +12,15 @@ const MODES: EvalMode[] = ["clean", "timeout", "ambiguous"];
 
 // Runs the built-in labelled benchmark and streams progress like an upload. The result is recorded for comparison.
 export async function POST(request: Request) {
-  const body = (await request.json().catch(() => null)) as { mode?: unknown; unsafeRetry?: unknown; label?: unknown } | null;
+  const body = (await request.json().catch(() => null)) as { mode?: unknown; unsafeRetry?: unknown; label?: unknown; txns?: unknown } | null;
+  // Optional: run only these case ids, such as ["80001"], instead of all 42.
+  const txns = Array.isArray(body?.txns) ? body.txns.filter((t): t is string => typeof t === "string" && /^\d{5}$/.test(t)).slice(0, 10) : [];
   const mode = MODES.includes(body?.mode as EvalMode) ? (body?.mode as EvalMode) : "clean";
   const label = typeof body?.label === "string" ? body.label : "";
   if (g.__batchActive) return Response.json({ error: "Another batch is running. Try again in a moment." }, { status: 429 });
   g.__batchActive = true;
 
-  const suite = buildEvalSuite();
+  const suite = buildEvalSuite(txns);
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
     async start(controller) {

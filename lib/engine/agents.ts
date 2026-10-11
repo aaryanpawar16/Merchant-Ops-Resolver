@@ -7,7 +7,7 @@ import { RunContext, ToolTimeout } from "@/lib/engine/runtime";
 import * as tools from "@/lib/engine/tools";
 import { AUTO_RELEASE_LIMIT_INR } from "@/lib/engine/tools";
 import type { Outcome, RunReport, Span } from "@/lib/engine/types";
-import type { FailureCode, KycDoc, Merchant, RiskSignals, Settlement } from "@/lib/engine/world";
+import type { FailureCode, KycDoc, Merchant, RiskSignals, SettlementView } from "@/lib/engine/world";
 
 const SYSTEM = "You are part of an operations team inside a payments company. Answer in plain sentences. No lists, no markdown, no greetings.";
 
@@ -43,7 +43,7 @@ const FULL_SWEEP: Record<FailureCode, string[]> = {
   UNCLASSIFIED: ["get_merchant_profile", "get_kyc", "get_risk_signals"],
 };
 
-function analyze(s: Settlement, facts: Facts): { findings: Finding[]; rootCause: string } {
+function analyze(s: SettlementView, facts: Facts): { findings: Finding[]; rootCause: string } {
   if (s.failureCode === "IFSC_ACCOUNT_MISMATCH") {
     const v = facts.verify;
     if (v?.accountFound && v.actualIfsc && !v.ifscOnFileMatches) {
@@ -127,7 +127,7 @@ function analyze(s: Settlement, facts: Facts): { findings: Finding[]; rootCause:
   return { rootCause: "Could not confirm the cause from the data available", findings: [] };
 }
 
-export async function investigate(ctx: RunContext, parent: Span, s: Settlement): Promise<Diagnosis> {
+export async function investigate(ctx: RunContext, parent: Span, s: SettlementView): Promise<Diagnosis> {
   return ctx.asAgent("investigation", "investigation.run", parent, async (span) => {
     const c = { ctx, agent: "investigation" as const, parent: span };
     const facts: Facts = {};
@@ -180,7 +180,7 @@ export type Decision =
   | { action: "partial_release"; release: number; retain: number; rationale: string; arbitrated: boolean }
   | { action: "escalate_unknown"; rationale: string; arbitrated: false };
 
-export async function decide(ctx: RunContext, parent: Span, s: Settlement, diag: Diagnosis): Promise<Decision> {
+export async function decide(ctx: RunContext, parent: Span, s: SettlementView, diag: Diagnosis): Promise<Decision> {
   const top = diag.findings[0];
 
   if (diag.conflict) {
@@ -251,7 +251,7 @@ export type Resolved = {
   skippedOnResume: number;
 };
 
-export async function resolve(ctx: RunContext, parent: Span, s: Settlement, decision: Decision): Promise<Resolved> {
+export async function resolve(ctx: RunContext, parent: Span, s: SettlementView, decision: Decision): Promise<Resolved> {
   return ctx.asAgent("resolution", "resolution.run", parent, async (span) => {
     const c = { ctx, agent: "resolution" as const, parent: span };
     const state: Strategy = { rail: "NEFT", channel: "email", idemKey: `idem_${ctx.id}_${s.txn}`, completed: [], attempt: 0 };
@@ -321,7 +321,7 @@ export async function resolve(ctx: RunContext, parent: Span, s: Settlement, deci
           let strategy = "retry with the same idempotency key";
           if (decision.action === "correct_ifsc") {
             state.rail = "IMPS";
-            strategy = "switch rail NEFT to IMPS, same idempotency key so a double payout is impossible";
+            strategy = ctx.flags.unsafeRetry ? "switch rail NEFT to IMPS" : "switch rail NEFT to IMPS, same idempotency key so a double payout is impossible";
           } else if (decision.action === "escalate_kyc" || decision.action === "escalate_unknown") {
             state.channel = "sms";
             strategy = "switch channel email to SMS";
@@ -329,7 +329,7 @@ export async function resolve(ctx: RunContext, parent: Span, s: Settlement, deci
           // The careless retry: a fresh key makes the bank treat the request as new, so it can pay twice.
           if (ctx.flags.unsafeRetry) {
             state.idemKey = `${state.idemKey}_retry${state.attempt}`;
-            strategy = `${strategy} (UNSAFE: new idempotency key)`;
+            strategy = `${strategy} with a NEW idempotency key (careless demonstration, so a double payout is possible)`;
           }
           retry.attrs.strategy = strategy;
           ctx.log("resolution", "info", `Strategy: ${strategy}.`);
@@ -392,7 +392,7 @@ export async function resolve(ctx: RunContext, parent: Span, s: Settlement, deci
 }
 
 // What the merchant needs to know, in plain words. Used as the message itself when llama2 is off.
-function plainSummary(s: Settlement, d: Decision, diag: Diagnosis, resolved: boolean): string {
+function plainSummary(s: SettlementView, d: Decision, diag: Diagnosis, resolved: boolean): string {
   if (d.action === "correct_ifsc" && resolved) {
     return `the bank code on file for your payout account was wrong. We corrected it and re-sent your payout of ${inr(s.amount)} (txn ${s.txn}). It has now settled. You do not need to do anything.`;
   }
@@ -459,7 +459,7 @@ function fallbackSubject(d: Decision, resolved: boolean): string {
   return "Your payout needs one more check";
 }
 
-export function startDraft(ctx: RunContext, parent: Span, s: Settlement, decision: Decision, diag: Diagnosis): Draft {
+export function startDraft(ctx: RunContext, parent: Span, s: SettlementView, decision: Decision, diag: Diagnosis): Draft {
   const expectedResolved = decision.action === "correct_ifsc" || decision.action === "partial_release";
   const plain = plainSummary(s, decision, diag, expectedResolved);
   const promise = ctx
@@ -486,7 +486,7 @@ export function startDraft(ctx: RunContext, parent: Span, s: Settlement, decisio
 export async function close(
   ctx: RunContext,
   parent: Span,
-  s: Settlement,
+  s: SettlementView,
   diag: Diagnosis,
   decision: Decision,
   res: Resolved,

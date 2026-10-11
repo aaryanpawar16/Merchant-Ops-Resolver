@@ -1,7 +1,7 @@
 import { memory, type MemoryEntry } from "@/lib/engine/checkpoints";
 import { RunContext, ToolTimeout } from "@/lib/engine/runtime";
 import type { AgentId, Span } from "@/lib/engine/types";
-import { bankFromIfsc, IFSC_DIRECTORY, type Settlement } from "@/lib/engine/world";
+import { bankFromIfsc, IFSC_DIRECTORY, type Settlement, type SettlementView } from "@/lib/engine/world";
 
 
 // Policy the Resolution worker must obey. The agents cannot argue their way past it.
@@ -29,7 +29,14 @@ function settlementOf({ ctx }: Ctx, txn: string): Settlement {
 // ---- reads -------------------------------------------------------------------------------------
 
 export function getSettlement(c: Ctx, txn: string) {
-  return c.ctx.tool(c.agent, c.parent, "get_settlement", { txn }, { latency: jitter(150) }, () => structuredClone(settlementOf(c, txn)));
+  return c.ctx.tool(c.agent, c.parent, "get_settlement", { txn }, { latency: jitter(150) }, (): SettlementView => {
+    // The bank's payout counter and idempotency-key store are internal to the bank. Showing them to an agent would let
+    // it spot a double payout that a real bank API would not reveal, so only the world (and the scorecard) can see them.
+    const view: Partial<Settlement> = structuredClone(settlementOf(c, txn));
+    delete view.payouts;
+    delete view.idempotencyKeys;
+    return view as SettlementView;
+  });
 }
 
 export function getMerchantProfile(c: Ctx, merchantId: string) {

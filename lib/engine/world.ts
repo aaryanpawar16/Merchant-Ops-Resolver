@@ -22,6 +22,10 @@ export type Settlement = {
   payouts: number;
 };
 
+// What an agent can see of a settlement through the bank API. The bank's own payout counter and idempotency-key store
+// are not part of it, so an agent cannot tell from the API alone that a payout happened twice.
+export type SettlementView = Omit<Settlement, "payouts" | "idempotencyKeys">;
+
 export type Merchant = {
   id: string;
   name: string;
