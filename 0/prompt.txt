@@ -1,0 +1,138 @@
+Documentation Index
+Fetch the complete documentation index at: /llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Skip to main content
+Live APIs are available now! Book a demo
+
+
+Search...
+Ctrl K
+
+Ask Assistant
+CTRLI
+Support
+Log Out
+Get API Key
+Documentation
+API reference
+Guides
+Changelogs
+Documentation
+Introduction
+Pricing
+Rate limits
+Credits
+Permissions
+Usage
+Agents
+
+Integrations
+llms.txt
+MCP
+CLI
+Products
+
+Company
+
+Person
+
+Job
+
+Web
+
+Social Post
+Data Export
+
+
+
+close
+
+On this page
+API areas
+What lives where
+First call
+Migrating from the legacy APIs?
+Documentation
+Introduction
+
+Copy page
+
+Crustdata’s public Company, Person, Job, Web, and Social Post APIs for search, enrich, identify, autocomplete, and content retrieval.
+
+Crustdata provides public APIs for the data layer behind sales, recruiting, and research workflows. You can query indexed datasets of companies, people, jobs, and social posts, enrich a known entity with fresh attributes, resolve identifiers, search the web, and fetch page content — all over a single versioned REST surface.
+Every endpoint in this version requires Authorization: Bearer <key> and x-api-version: 2025-11-01. Live endpoints (real-time retrieval from the web) are enterprise-only and plan-specific — review Pricing before you build against them.
+
+API areas
+Five product areas, grouped by entity. Pick the area for the entity you work with; each area’s introduction page walks the simplest query and links onward to filters, pagination, and the full reference.
+Company
+Search the indexed company dataset, enrich a known company, resolve a domain/name/URL to a Crustdata ID, and surface valid filter values with autocomplete.
+Person
+Search the indexed people dataset, enrich a known person, discover developer profiles, and surface valid filter values with autocomplete.
+Job
+Search the indexed job-listings dataset with filters, cursor pagination, and aggregations. Fetch real-time openings for a single company on demand.
+Web
+Search the web across news, web, scholar, social, and deep-research sources, or fetch the HTML content of any URL.
+Social Post
+Search the indexed social post dataset by text, author, engagement, reactors, and mentions, enrich recent posts for a person or company, or run a live keyword search. Enabled on request.
+
+What lives where
+Every API area’s section opens with a short overview (orientation), then progressive how-to pages (filters, pagination, recipes), and finishes with reference (the full request / response schema). Use this map to pick the right page for your task:
+If you want to…	Go to
+Understand what an API area does	Each area’s Introduction page
+Build a query step-by-step	The area’s Filters, Pagination, Recipes pages
+Look up an exact field, parameter, or error code	The area’s Reference page or the interactive API reference
+Estimate cost	Pricing
+Check throughput limits	Rate limits
+Port an existing integration from the legacy APIs	Migration guides
+
+First call
+If you haven’t called the API yet, start with the simplest possible request — Company search by name, then layer filters from there.
+curl --request POST \
+  --url https://api.crustdata.com/company/search \
+  --header 'authorization: Bearer REDACTED' \
+  --header 'content-type: application/json' \
+  --header 'x-api-version: 2025-11-01' \
+  --data '{
+    "filters": { "field": "basic_info.name", "type": "=", "value": "Crustdata" },
+    "limit": 1
+  }'
+Continue with Company search or jump to any of the API areas above.
+
+Migrating from the legacy APIs?
+If you have an integration on the legacy /screener/* or /data_lab/* endpoints, head to the Migration guides overview — it lists every legacy endpoint, its current replacement, and the universal changes (auth scheme, version header, error envelope) that apply across every migration.
+Related topics
+
+API Introduction
+Social Post Search reference
+llms.txt
+Person Enrich reference
+Was this page helpful?
+
+
+Yes
+
+No
+Pricing
+Next
+Ask a question...
+
+<pasted_content id="eb90">
+4. Claim your Crustdata credits
+Get 5,000 Crustdata credits to build with company and people data.
+
+Use promo code: NEATLOGS-OCT2026
+
+Open https://app.crustdata.com and select “Have a promo code?” below Continue. Add the code before signing up with your email. Use email signup, not “Continue with Google”, so the code can be applied. Already have an account, or need help? Contact the neatHack organisers at https://neatlogs.com/discord.
+
+API documentation: https://www.crustdata.com/api-documentation
+</pasted_content id="eb90">
+
+       do we need this?
+
+x
+linkedin
+
+
+Introduction - Crustdata Docs
