@@ -1,0 +1,1 @@
+how to pull llama3.2 in terminal
