@@ -114,3 +114,7 @@ now
 ---
 
 where are we in the position, can we win
+
+---
+
+commit
