@@ -1,0 +1,18 @@
+# Render blueprint for a public demo. One long-lived Node process, which suits the live streaming endpoints and the
+# in-memory run history. If Render rejects this file, create a Web Service by hand with the same values.
+services:
+  - type: web
+    name: merchant-ops-resolver
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/status
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      # Set to the service's own URL after the first deploy, then redeploy. Used for the share-card image links.
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
+      # Leave NEATLOGS_API_KEY unset on a public demo. With no key, tracing is off and the app behaves identically.
+      # No model server exists on the host, so the built-in wording is used and every decision is unchanged.

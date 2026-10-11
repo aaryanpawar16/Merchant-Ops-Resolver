@@ -145,6 +145,8 @@ Lighthouse on the production build in headless Chrome, which renders WebGL in so
 ## Deploying
 
 - The console needs a Node server for the live stream, so use a host that runs Next.js server routes. `POST /api/runs` sets `maxDuration = 60` for platforms that read it.
-- Set `NEATLOGS_API_KEY` and `NEXT_PUBLIC_SITE_URL` as environment variables. Never commit the key.
-- Ollama is local, so a hosted deployment uses the built-in wording. Decisions and traces are unchanged.
-- Memory and run history are written to `RESOLVER_DATA_DIR`, falling back to the OS temp directory. On serverless hosts they reset between instances, so a repeat case there may not start from a saved playbook.
+- Set `NEXT_PUBLIC_SITE_URL` (the site's own URL, used for share-card images) as an environment variable. Set `NEATLOGS_API_KEY` only if you want a deployment to send traces; never commit the key. A public demo is better left without it, so visitors' runs do not land in your neatlogs project.
+- Ollama is local, so a hosted deployment uses the built-in wording. Decisions are unchanged.
+- Memory and run history are written to `RESOLVER_DATA_DIR`, falling back to the OS temp directory. On serverless hosts they reset between instances, so a repeat case there may not start from a saved playbook, and a "copy link to this run" link can fail from another instance. A single long-lived Node process avoids both.
+- `render.yaml` is a ready blueprint for [Render](https://render.com) (one Node web service). The free plan sleeps after a period of no traffic, so the first request after a pause takes about a minute.
+- Visitors share one memory and one run history, so a repeat case may already show a playbook another visitor taught it.
