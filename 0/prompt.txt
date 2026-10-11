@@ -1,0 +1,263 @@
+I'll rebuild the economics around your measured numbers and outcome-based pricing, then With your measured costs, the model is no longer the problem. Volume is. At $1.50 per resolved case and no platform fee, you'd need about 225,000 merchants to break even, and the plan only reaches 67,000 by Sep 2028. Cash runs out in June 2027.
+
+What changed with your numbers
+
+
+
+
+
+Model cost per case: $0.30 (my estimate) → $0.014. That's your measured $0.004, plus 10% of cases sent to a stronger hosted model at $0.10 each. At Sep 2028 the model bill is $182/month. Even at 10x it's $1,821/month, so it no longer decides whether you make money.
+
+
+
+Agent time: I used 25 seconds per case to size the servers that run the model. At 13,000 cases a month you only need 2 servers, the minimum for staying up if one fails. That's a flat $1,500/month, and those 2 servers have room for roughly 15x more cases.
+
+
+
+Human cost: kept at your 38 min × $8/hr = $5.07. It's now only used to compare your price with what a human costs. Escalated cases go back to the customer's own team, because you're charging a smaller fee for them.
+
+
+
+Costs added for real scale: customer success at $600 per live customer per month, compliance at $250 per customer per month on top of the $1.5k security program, 8% sales commission, and the inference servers. Payroll and onboarding stay as before.
+
+
+
+Left out: the 8–9% learning effect, as you asked. I didn't use 75% as a real-world rate: Main climbs from 55% to 65%, and I added Auto-resolution 40% and Auto-resolution 80% scenarios.
+
+Each price option (Sep 2028, 65% auto-resolution)
+
+Escalated cases are priced at 25% of the resolved fee.
+
+
+
+
+
+
+
+Price
+
+
+
+Monthly revenue
+
+
+
+Gross margin
+
+
+
+Break-even merchants
+
+
+
+Months cash stays positive (of 24)
+
+
+
+Lowest cash
+
+
+
+
+
+$1.00/case, no platform fee
+
+
+
+$9.6k
+
+
+
+10%
+
+
+
+375k
+
+
+
+8
+
+
+
+–$440k
+
+
+
+
+
+$1.50/case, no platform fee (Main)
+
+
+
+$14.4k
+
+
+
+40%
+
+
+
+225k
+
+
+
+8
+
+
+
+–$398k
+
+
+
+
+
+$2.00/case, no platform fee
+
+
+
+$19.2k
+
+
+
+55%
+
+
+
+161k
+
+
+
+9
+
+
+
+–$355k
+
+
+
+
+
+$1.00/case + $1 platform
+
+
+
+$77k
+
+
+
+89%
+
+
+
+36k
+
+
+
+24
+
+
+
+$16k
+
+
+
+
+
+$1.50/case + $1 platform
+
+
+
+$82k
+
+
+
+89%
+
+
+
+34k
+
+
+
+24
+
+
+
+$24k
+
+
+
+
+
+$2.00/case + $1 platform
+
+
+
+$87k
+
+
+
+90%
+
+
+
+32k
+
+
+
+24
+
+
+
+$32k
+
+
+
+
+
+Any case fee + $3 platform
+
+
+
+$212–221k
+
+
+
+96%
+
+
+
+~12.5k
+
+
+
+24
+
+
+
+~$85k
+
+Moving auto-resolution between 40% and 80% changes the per-case-only options a lot: at $1.50, gross margin goes from 20% to 48% and break-even from 323k to 190k merchants. It barely moves the platform-fee options.
+
+What it means
+
+
+
+
+
+Per-case pricing alone doesn't cover fixed costs. At 0.175 cases per merchant per month, $1.50 a case earns about $0.19 per merchant. Break-even needs roughly 39,000 cases a month, and the plan has 13,000. The team, servers, customer success and compliance are fixed costs, and per-case revenue can't carry them at this volume.
+
+
+
+A $1 platform fee fixes cash, but it's hard to justify on labour savings alone. At 65% auto-resolution, the agent saves a customer about $0.58 of labour per merchant per month. A $1 fee costs more than that, so you'd have to sell it on something else: faster settlements, fewer merchant complaints, meeting regulatory deadlines.
+
+
+
+The number that decides everything now is cases per merchant, and it's still my guess (0.20 for payment aggregators, 0.15 for fintechs). If your pilot customers really see 0.5–1 case per merchant per month, $1.50 per case with no platform fee works. Get that number from a real payment company before you choose a price.
+
+My recommendation: $1.50 per resolved case, $0.375 per escalated case, plus a small platform fee ($0.50–1) that you waive for high-volume customers. Re-check once you have a real cases-per-merchant figure.
+
+Everything is on . The  now has sliders for the platform fee, the case fee, the escalated-case fee and model cost. I removed the old "Value pricing" scenario because Main now uses outcome-based pricing.
+
+Next, I can add cases per merchant as a lever and show the volume at which per-case-only pricing breaks even. That's the number to put in your pitch.https://cfo.ai/s/zjvRY4EQYV-5T8uH
