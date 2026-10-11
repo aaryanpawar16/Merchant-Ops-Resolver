@@ -22,7 +22,7 @@ Differentiators:
 | #neatHack posts | TODO |
 | neatlogs shared trace (a run where a call failed and the agent recovered) | TODO |
 | neatlogs before/after traces | TODO |
-| Entire checkpoint | TODO (`https://entire.io/gh/OWNER/REPO/commit/FULL_SHA`) |
+| Entire checkpoint | https://entire.io/gh/aaryanpawar16/Merchant-Ops-Resolver/commit/102712c906c846377e331764777a03b42dabff00 |
 | cfo.ai business plan | https://cfo.ai/s/zjvRY4EQYV-5T8uH |
 
 ## Tools used

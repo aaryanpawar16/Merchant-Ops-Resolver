@@ -13,7 +13,7 @@ export const site = {
     // A shared trace of a real run in neatlogs.
     neatlogs: "#",
     // The Entire checkpoint of this project's build (https://entire.io/gh/OWNER/REPO/commit/SHA).
-    entire: "#",
+    entire: "https://entire.io/gh/aaryanpawar16/Merchant-Ops-Resolver/commit/102712c906c846377e331764777a03b42dabff00",
     // The business plan built in cfo.ai.
     plan: "https://cfo.ai/s/zjvRY4EQYV-5T8uH",
   },
