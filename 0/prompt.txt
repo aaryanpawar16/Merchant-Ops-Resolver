@@ -1,0 +1,119 @@
+0.02s
+Coordinator
+Instruction received: "Sharma Kirana's settlement for txn #48213 failed. Investigate and resolve."
+0.02s
+Coordinator
+get_settlement(48213)
+0.26s
+Coordinator
+Case: Beneficiary validation failed: account does not exist at branch for IFSC HDFC0001234
+0.26s
+Coordinator
+Plan: Investigation finds the cause, Resolution applies only what policy allows and verifies it against the real system, Closure documents and informs the merchant.
+0.26s
+Coordinator
+Entire: saved ckpt_1_5a8b35e (plan)
+0.26s
+Investigation
+search_memory(IFSC_ACCOUNT_MISMATCH, entire)
+0.37s
+Investigation
++Entire hit: 3 similar cases resolved. Skipping the full sweep, running 1 targeted check.
+0.37s
+Investigation
+verify_beneficiary(50100234567890, HDFC0001234)
+0.84s
+Investigation
+Finding (97%): The IFSC on file (HDFC0001234) is wrong. Account **********7890 is held at State Bank of India (SBIN0000456).
+0.84s
+Investigation
+Entire: saved ckpt_2_94a69a8 (diagnosis)
+0.85s
+Coordinator
+Decision: correct_ifsc. The IFSC on file (HDFC0001234) is wrong. Account **********7890 is held at State Bank of India (SBIN0000456).
+0.97s
+Resolution
+Entire: saved ckpt_3_2f4f828 (pre-fix)
+0.97s
+Resolution
+policy_check(update_bank_details)
+1.07s
+Resolution
+Entire: saved ckpt_4_93aca98 (policy)
+1.07s
+Resolution
+update_bank_ifsc(m_1001, SBIN0000456)
+1.42s
+Resolution
+Entire: saved ckpt_5_80d18ac (update_ifsc)
+1.42s
+Resolution
+retrigger_settlement(48213, NEFT, idem_run_669d7934_48213)
+1.81s
+Resolution
+Entire: saved ckpt_6_2724d25 (retrigger)
+1.81s
+Resolution
+get_settlement(48213, verify)
+2.06s
+Resolution
+Status is PROCESSING, checking again.
+2.37s
+Resolution
+get_settlement(48213, verify)
+2.67s
+Resolution
++status=SETTLED, INR 84,250 confirmed via API
+2.68s
+Closure
+write_kb(48213)
+2.98s
+Closure
++Knowledge base article KB-48213 written.
+2.98s
+Closure
+Case is verified. Waiting up to 20 s for llama2 to finish the merchant message.
+21.15s
+Closure
+!llama2 took longer than 20 s, so the built-in wording was used
+21.23s
+Closure
+notify_merchant(m_1001, email)
+21.57s
+Closure
++Merchant notified by email.
+21.57s
+Closure
+Entire: saved ckpt_7_caf57f3 (closed)
+21.64s
+Closure
+Entire: pattern saved, so the next similar case starts with this playbook.Case txn 48213
+Closed, verified
+Merchant
+Sharma Kirana
+Fault
+Settlement failed
+Root cause
+Bank IFSC code mismatch
+Fix
+IFSC corrected to SBIN0000456, settlement retriggered
+Verification
+status=SETTLED, INR 84,250 confirmed via API
+Human input
+One instruction
+Resolved and verified
+21.7 s / $0.0044
+Settlement 48213 verified as settled in 21.7 s.
+
+Entire memory hit. This case started from a saved playbook, so it skipped the full sweep.
+
+Reused a playbook from Entire memory
+IFSC corrected to SBIN0000456, settlement retriggered
+status=SETTLED, INR 84,250 confirmed via API
+Message sent to the merchant
+built-in wording
+Hello Sharma Kirana team, the bank code on file for your payout account was wrong. We corrected it and re-sent your payout of INR 84,250 (txn 48213). It has now settled. You do not need to do anything.
+Knowledge base entry
+IFSC_ACCOUNT_MISMATCH: Bank IFSC code mismatch. Fix: IFSC corrected to SBIN0000456, settlement retriggered. Evidence tools: verify_beneficiary. Outcome: resolved.
+
+Copy link to this run
