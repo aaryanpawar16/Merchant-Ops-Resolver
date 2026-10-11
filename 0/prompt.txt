@@ -1,0 +1,116 @@
+0.05s
+Coordinator
+Instruction received: "Rao Pharmacy's settlement for txn #48220 is on hold. Find out why and sort it out."
+0.06s
+Coordinator
+get_settlement(48220)
+0.27s
+Coordinator
+Case: Settlement held by compliance: merchant KYC document expired
+0.27s
+Coordinator
+Plan: Investigation finds the cause, Resolution applies only what policy allows and verifies it against the real system, Closure documents and informs the merchant.
+0.27s
+Coordinator
+Entire: saved ckpt_1_c9c6688 (plan)
+0.28s
+Investigation
+search_memory(KYC_DOCUMENT_EXPIRED, entire)
+0.44s
+Investigation
+No similar case on record. Sweeping payments, KYC and risk data (3 checks).
+0.44s
+Investigation
+get_merchant_profile(m_1002)
+0.64s
+Investigation
+get_risk_signals(m_1002)
+0.91s
+Investigation
+get_kyc(m_1002)
+1.20s
+Investigation
+Finding (99%): Drug licence TN/20B/2021/4471 expired on 2026-09-30, so compliance froze the settlement.
+1.20s
+Investigation
+Entire: saved ckpt_2_8080389 (diagnosis)
+1.20s
+Coordinator
+Decision: escalate_kyc. Drug licence TN/20B/2021/4471 expired on 2026-09-30, so compliance froze the settlement.
+1.30s
+Resolution
+Entire: saved ckpt_3_6b1264f (pre-fix)
+1.31s
+Resolution
+policy_check(modify_kyc_status)
+1.39s
+Resolution
+!Policy blocks the direct fix: Compliance status can only be changed by a human reviewer. Taking the safe path instead.
+1.39s
+Resolution
+Entire: saved ckpt_4_d851f1e (policy)
+1.39s
+Resolution
+request_rekyc(m_1002, email)
+1.76s
+Resolution
+Entire: saved ckpt_5_6f9f1d0 (request_rekyc)
+1.76s
+Resolution
+get_settlement(48220, verify)
+1.99s
+Resolution
++Settlement is safely held and a re-KYC request is on record
+2.00s
+Closure
+write_kb(48220)
+2.25s
+Closure
++Knowledge base article KB-48220 written.
+2.25s
+Closure
+Case is verified. Waiting up to 15 s for llama2 to finish the merchant message.
+16.35s
+Closure
+!llama2 took longer than 15 s, so the built-in wording was used
+16.36s
+Closure
+notify_merchant(m_1002, email)
+16.69s
+Closure
++Merchant notified by email.
+16.69s
+Closure
+Entire: saved ckpt_6_ff30387 (closed)
+16.70s
+Closure
+Entire: pattern saved, so the next similar case starts with this playbook.Case txn 48220
+Escalated to human
+Merchant
+Rao Pharmacy
+Fault
+Settlement held
+Root cause
+KYC document expired
+Fix
+Pending
+Verification
+Settlement is safely held and a re-KYC request is on record
+Human input
+One instruction
+Escalated to a human
+16.7 s / $0.0043
+Handled safely in 16.7 s. A human decision is still needed.
+
+Cold start. No playbook existed for this failure, so the agents swept every system. It is saved now: run this case again and compare.
+
+Swept payments, KYC and risk data
+Re-KYC requested, human review needed
+Settlement is safely held and a re-KYC request is on record
+Message sent to the merchant
+built-in wording
+Hello Rao Pharmacy team, your payout of INR 1,56,900 (txn 48220) is on hold because your Drug licence has expired. Please upload a renewed copy and our team will review it and release the funds.
+Knowledge base entry
+KYC_DOCUMENT_EXPIRED: KYC document expired. Fix: Re-KYC requested, human review needed. Evidence tools: get_kyc. Outcome: escalated.
+
+Copy link to this run
