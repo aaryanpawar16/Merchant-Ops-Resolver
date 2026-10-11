@@ -5,7 +5,7 @@ export const site = {
   hackathon: "#neatHack",
   links: {
     // The public repository.
-    github: "#",
+    github: "https://github.com/aaryanpawar16/Merchant-Ops-Resolver",
     // The demo video.
     demo: "#",
     // A public post tagged #neatHack.

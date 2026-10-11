@@ -17,7 +17,7 @@ Differentiators:
 
 | Item | Link |
 | --- | --- |
-| Public repository | TODO |
+| Public repository | https://github.com/aaryanpawar16/Merchant-Ops-Resolver |
 | Demo video | TODO |
 | #neatHack posts | TODO |
 | neatlogs shared trace (a run where a call failed and the agent recovered) | TODO |
