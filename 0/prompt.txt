@@ -1,0 +1,18 @@
+<pasted_content id="eb90">
+PS F:\Coding\merchant-ops-resolver> $env:Path = [Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [Environment]::GetEnvironmentVariable("Path","User")
+PS F:\Coding\merchant-ops-resolver> git --version
+git version 2.55.0.windows.5
+PS F:\Coding\merchant-ops-resolver> git push -u origin main
+info: please complete authentication in your browser...
+Enumerating objects: 148, done.
+Counting objects: 100% (148/148), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (137/137), done.
+Writing objects: 100% (146/146), 217.02 KiB | 4.17 MiB/s, done.
+Total 146 (delta 7), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (7/7), done.
+To https://github.com/aaryanpawar16/Merchant-Ops-Resolver.git
+   040d506..9340e47  main -> main
+branch 'main' set up to track 'origin/main'.
+PS F:\Coding\merchant-ops-resolver>
+</pasted_content id="eb90">
