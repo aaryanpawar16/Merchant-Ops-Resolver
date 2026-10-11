@@ -2,6 +2,8 @@
 
 An autonomous multi-agent system that investigates, fixes, verifies and closes merchant operations issues such as a failed settlement. Give it one instruction, and four agents handle the case.
 
+**Live demo: https://merchant-ops-resolver.onrender.com** (free plan: after a quiet period the first request takes about a minute while it wakes up). Tracing is off there, and no model server is attached, so it uses the built-in wording. Decisions are identical.
+
 - `/` is the landing page.
 - `/console` is the working product: run a case and watch the agents, trace, checkpoints and costs live. The **Show me in 30 seconds** button plays the break-and-recover case and walks through the results.
 - `/console/batch` takes a file. Upload a CSV, TSV or JSON export of failed and held settlements and the agents work through every case. `/console/batch?demo=1` loads the sample file and runs it.

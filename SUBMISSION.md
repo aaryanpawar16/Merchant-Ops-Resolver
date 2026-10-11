@@ -18,6 +18,7 @@ Differentiators:
 | Item | Link |
 | --- | --- |
 | Public repository | https://github.com/aaryanpawar16/Merchant-Ops-Resolver |
+| Live demo | https://merchant-ops-resolver.onrender.com (free plan: the first request after a quiet period takes about a minute) |
 | Demo video | TODO |
 | #neatHack posts | TODO |
 | neatlogs shared trace (a run where a call failed and the agent recovered) | TODO |
@@ -40,6 +41,8 @@ npm run dev
 ```
 
 Open `/console` for one case, `/console/batch?demo=1` for the sample file, `/eval` for the scorecard. The full instructions are in `README.md`.
+
+The live demo runs without a model server and without tracing, so it uses the built-in wording. The decisions, checkpoints and scorecard results are the same as locally. All visitors share one memory and run history. The traces linked above were captured from a local run.
 
 ## Evidence of the agent working
 
