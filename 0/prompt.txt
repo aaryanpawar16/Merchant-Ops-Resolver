@@ -1,0 +1,1 @@
+the Entire checkpoint (the one required item that is still missing), the real links in lib/site.ts, the eval scorecard and red-team demo,   build these
