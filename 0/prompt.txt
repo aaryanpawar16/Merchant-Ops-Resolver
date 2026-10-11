@@ -1,0 +1,1 @@
+i have built a landing page already, now i want to build actual project, add a route from landing page like 'Try now', then do backend work add the cool features, which will make us win this hackathon
