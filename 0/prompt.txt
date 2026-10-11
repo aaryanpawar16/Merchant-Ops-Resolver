@@ -1,0 +1,1 @@
+Entire checkpoint: follow the Windows steps from my earlier message (install Entire, create the GitHub repo, enable it, then commit in a fresh Claude Code session).          give full steps
