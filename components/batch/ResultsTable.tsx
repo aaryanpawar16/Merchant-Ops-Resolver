@@ -4,6 +4,7 @@ import { ChevronDown, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { fmtMs } from "@/components/console/format";
+import { WhyNotPanel } from "@/components/console/WhyNotPanel";
 import { humanNextStep, inr, OUTCOME_STYLE, PATTERN_LABEL } from "@/components/batch/labels";
 import type { IntakeCase } from "@/lib/engine/intake";
 import type { BatchCaseResult } from "@/lib/engine/types";
@@ -119,6 +120,11 @@ export function ResultsTable({ cases, results, current }: { cases: IntakeCase[];
                       </Field>
                     )}
                   </dl>
+                  {r.whyNot && (
+                    <div className="mt-3">
+                      <WhyNotPanel why={r.whyNot} />
+                    </div>
+                  )}
                   {r.runId && (
                     <Link
                       href={`/console?run=${r.runId}`}

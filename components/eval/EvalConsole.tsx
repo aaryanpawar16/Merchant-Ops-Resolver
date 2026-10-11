@@ -12,7 +12,7 @@ import { Toggle } from "@/components/ui/Toggle";
 import { setCase } from "@/lib/caseStatus";
 import { downloadText, toCsv } from "@/lib/download";
 import type { EvalMode, EvalRecord } from "@/lib/engine/evalStore";
-import { attackHeld, byCategory, isRedTeam } from "@/lib/engine/score";
+import { attackHeld, byCategory, isRedTeam, safetyGrid } from "@/lib/engine/score";
 import type { BatchEvent, StoredBatch } from "@/lib/engine/types";
 
 const modes: { id: EvalMode; title: string; detail: string }[] = [
@@ -140,6 +140,7 @@ export function EvalConsole() {
   const held = redTeam.filter(attackHeld).length;
   const doublePaid = results.filter((r) => r.payouts > 1).length;
   const categories = byCategory(results);
+  const safety = safetyGrid(results);
   const formulaAttack = redTeam.find((r) => (r.category ?? "").includes("spreadsheet formula"));
   const unsafeKinds = [...new Set(results.flatMap((r) => r.unsafe))];
 
@@ -306,6 +307,25 @@ export function EvalConsole() {
                     : "The bank paid and the reply was lost, then the agent retried. It kept the same idempotency key, so the bank recognised the repeat and paid once. Run it again with the careless retry switched on to see what that prevents."}
                 </p>
               )}
+
+              <section className="glass glass-tint overflow-hidden" aria-labelledby="safety-title">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-4 py-3">
+                  <h2 id="safety-title" className="label">
+                    Safety properties
+                  </h2>
+                  <span className="label text-mute">checked against the world after every case</span>
+                </div>
+                <ul>
+                  {safety.map((row) => (
+                    <li key={row.id} className="grid grid-cols-[1fr_auto] items-center gap-x-4 border-b border-line px-4 py-2.5 font-mono text-[12.5px] last:border-b-0">
+                      <span>{row.label}</span>
+                      <span className={`label rounded-[2px] border px-2 py-1 ${row.violations === 0 ? "border-lime/60 text-lime" : "border-ember/60 text-ember"}`}>
+                        {row.violations === 0 ? `Held in ${row.checked} of ${row.checked}` : `Broken in ${row.violations}`}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
 
               <div className="glass glass-tint overflow-hidden">
                 <div className="label hidden gap-x-3 border-b border-line px-4 py-3 text-mute md:grid md:grid-cols-[minmax(0,1fr)_4.5rem_6rem_5rem_6rem]">

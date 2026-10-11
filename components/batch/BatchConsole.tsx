@@ -4,7 +4,7 @@ import { Download, FileUp, Loader2, Play } from "lucide-react";
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import { batchReducer, initialBatchState } from "@/components/batch/batchState";
 import { IntakePreview } from "@/components/batch/IntakePreview";
-import { humanNextStep, PATTERN_LABEL } from "@/components/batch/labels";
+import { humanNextStep, PATTERN_LABEL, whyNotText } from "@/components/batch/labels";
 import { ResultsTable } from "@/components/batch/ResultsTable";
 import { SummaryCards } from "@/components/batch/SummaryCards";
 import { ConsoleNav } from "@/components/console/ConsoleNav";
@@ -155,8 +155,8 @@ export function BatchConsole() {
 
   function downloadResults() {
     const rows = [
-      ["txn", "merchant", "amount_inr", "issue", "outcome", "root_cause", "evidence", "what_the_agents_did", "check_afterwards", "email_subject", "tool_calls", "failed_calls_recovered", "time_ms", "cost_usd", "reused_playbook", "expected_outcome", "matched", "run_id"],
-      ...state.results.map((r) => [r.txn, r.merchant, r.amount, PATTERN_LABEL[r.pattern], r.outcome, r.rootCause, (r.evidence ?? []).join(" | ") || "none found", r.fix, r.verification, r.subject, r.toolCalls, r.recoveries ?? 0, r.durationMs, r.costUsd.toFixed(5), r.memoryHit, r.expected, r.matched, r.runId]),
+      ["txn", "merchant", "amount_inr", "issue", "outcome", "root_cause", "evidence", "what_the_agents_did", "why_this_decision", "check_afterwards", "email_subject", "tool_calls", "failed_calls_recovered", "time_ms", "cost_usd", "reused_playbook", "expected_outcome", "matched", "run_id"],
+      ...state.results.map((r) => [r.txn, r.merchant, r.amount, PATTERN_LABEL[r.pattern], r.outcome, r.rootCause, (r.evidence ?? []).join(" | ") || "none found", r.fix, whyNotText(r), r.verification, r.subject, r.toolCalls, r.recoveries ?? 0, r.durationMs, r.costUsd.toFixed(5), r.memoryHit, r.expected, r.matched, r.runId]),
     ];
     downloadText(`results-${baseName(state.report?.filename)}.csv`, toCsv(rows));
   }
@@ -164,8 +164,8 @@ export function BatchConsole() {
   function downloadEscalations() {
     const waiting: BatchCaseResult[] = state.results.filter((r) => r.outcome !== "resolved");
     const rows = [
-      ["txn", "merchant", "amount_inr", "reason_in_file", "root_cause", "evidence", "what_the_agents_did", "next_step_for_a_person", "run_id"],
-      ...waiting.map((r) => [r.txn, r.merchant, r.amount, r.reason, r.rootCause, (r.evidence ?? []).join(" | ") || "none found", r.fix, humanNextStep(r), r.runId]),
+      ["txn", "merchant", "amount_inr", "reason_in_file", "root_cause", "evidence", "what_the_agents_did", "why_not_fixed_automatically", "next_step_for_a_person", "run_id"],
+      ...waiting.map((r) => [r.txn, r.merchant, r.amount, r.reason, r.rootCause, (r.evidence ?? []).join(" | ") || "none found", r.fix, whyNotText(r), humanNextStep(r), r.runId]),
     ];
     downloadText(`escalations-${baseName(state.report?.filename)}.csv`, toCsv(rows));
   }

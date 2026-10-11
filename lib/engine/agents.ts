@@ -169,6 +169,11 @@ export async function investigate(ctx: RunContext, parent: Span, s: Settlement):
 
 // ---- decisions (Coordinator) -------------------------------------------------------------------
 
+// The two numbers that decide whether a risk hold may be released without a person. Shared with the explainer,
+// so what it tells a user is always what the rules actually are.
+export const BENIGN_RELEASE_CONFIDENCE = 0.8;
+export const MAX_RETAINED_SHARE = 0.1;
+
 export type Decision =
   | { action: "correct_ifsc"; ifsc: string; rationale: string; arbitrated: false }
   | { action: "escalate_kyc"; rationale: string; arbitrated: false }
@@ -186,7 +191,7 @@ export async function decide(ctx: RunContext, parent: Span, s: Settlement, diag:
       const exposure = cluster?.amount ?? 0;
       const share = exposure / s.amount;
       const release = s.amount - exposure;
-      const safe = share < 0.1 && release <= AUTO_RELEASE_LIMIT_INR;
+      const safe = share < MAX_RETAINED_SHARE && release <= AUTO_RELEASE_LIMIT_INR;
       const rationale = safe
         ? `Both findings hold. The suspicious cluster is ${(share * 100).toFixed(1)}% of the settlement, so release ${inr(release)} and retain ${inr(exposure)} for human review.`
         : "The suspicious cluster is too large to release around, so the whole settlement stays held for human review.";
@@ -226,7 +231,7 @@ export async function decide(ctx: RunContext, parent: Span, s: Settlement, diag:
     return { action: "escalate_kyc", rationale: top.hypothesis, arbitrated: false };
   }
   // A risk hold with only the benign explanation and nothing suspicious: release it, if policy allows.
-  if (s.failureCode === "RISK_VELOCITY_SPIKE" && top?.id === "seasonal_spike" && top.confidence >= 0.8 && s.amount <= AUTO_RELEASE_LIMIT_INR) {
+  if (s.failureCode === "RISK_VELOCITY_SPIKE" && top?.id === "seasonal_spike" && top.confidence >= BENIGN_RELEASE_CONFIDENCE && s.amount <= AUTO_RELEASE_LIMIT_INR) {
     return { action: "partial_release", release: s.amount, retain: 0, rationale: top.hypothesis, arbitrated: false };
   }
   return { action: "escalate_unknown", rationale: "The evidence does not support a safe automatic fix.", arbitrated: false };

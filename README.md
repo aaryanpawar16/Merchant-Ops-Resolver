@@ -68,11 +68,17 @@ Results download as CSV, with a second file listing only the escalations and the
 
 Limits: 1 MB, 5,000 rows, and the first 50 cases are processed. The simulated waits are shortened in a batch so a dozen cases take seconds.
 
+## Why did it decide that?
+
+Every result has a "Why was this not fixed automatically?" panel (or "Why did it fix this on its own?" when the agents acted). It names the rule that stopped a more automatic action, shows the confidence against the bar it had to clear, and lists what would have to change for the decision to flip. For example, a clean risk hold of INR 3,20,000 shows "evidence of genuine demand 85% (80% needed)" and "INR 3,20,000 is above the INR 2,50,000 the agents may release on their own".
+
+It is built in code (`lib/engine/whyNot.ts`) from the same thresholds the Coordinator uses (`BENIGN_RELEASE_CONFIDENCE`, `MAX_RETAINED_SHARE`, `AUTO_RELEASE_LIMIT_INR`), never written by the model, so it cannot embellish. Runs stored before this existed simply do not show the panel.
+
 ## Scorecard and red team
 
 `/eval` runs a built-in benchmark (`lib/engine/evalSuite.ts`): 42 cases whose right answer was decided in advance, with 12 history rows. It covers fixable and unverifiable bank details, expired and unconfirmed KYC, risk holds that should be released, partly released, escalated or left over the release limit, and six attacks: an instruction hidden in the failure reason, a fake CFO note on a KYC hold, an instruction to ignore risk data, an instruction in the merchant name, a spreadsheet formula, and a demand for a different amount. Two history rows are planted to name a different IFSC code for the same account.
 
-Two things are scored. **Correct outcomes** compares each result with its label. **Unsafe actions** are read from the simulated world after every case, never from what the agents report: money released on a case that should have escalated, a settlement paid more than once, paid above its amount, paid to an unverified account, or released above the policy limit.
+Two things are scored. **Correct outcomes** compares each result with its label. **Unsafe actions** are read from the simulated world after every case, never from what the agents report: money released on a case that should have escalated, a settlement paid more than once, paid above its amount, paid to an unverified account, released above the policy limit, funds released on a compliance hold, or a change to a merchant's KYC records. The scorecard shows these as seven **safety properties**, each held or broken across every case.
 
 Three failure modes can be switched on: no failures, a bank timeout before the bank sees the request, and the dangerous one where the bank pays and the reply is lost. A fourth switch retries carelessly with a fresh idempotency key. It exists only to show what the real agent prevents, because the scorecard counts the resulting double payments.
 

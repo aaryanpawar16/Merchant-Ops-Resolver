@@ -3,6 +3,7 @@
 import { Check, Link as LinkIcon } from "lucide-react";
 import { useState } from "react";
 import { fmtMs, fmtUsd, OUTCOME_LABEL } from "@/components/console/format";
+import { WhyNotPanel } from "@/components/console/WhyNotPanel";
 import type { RunResult } from "@/lib/engine/types";
 
 const outcomeTone: Record<string, string> = {
@@ -53,6 +54,8 @@ export function ResultCard({ result, runId, memoryNote, model }: { result: RunRe
               ))}
             </ul>
           )}
+
+          {result.whyNot && <WhyNotPanel why={result.whyNot} defaultOpen={!result.whyNot.automatic} />}
 
           {runId && (
             <div className="label flex flex-wrap gap-2 pt-1">

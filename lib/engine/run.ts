@@ -4,7 +4,8 @@ import { RunContext } from "@/lib/engine/runtime";
 import { store } from "@/lib/engine/store";
 import { telemetryOn, traced } from "@/lib/engine/telemetry";
 import * as tools from "@/lib/engine/tools";
-import type { Outcome, RunEvent, RunOptions, RunReport, RunResult, Span, StoredRun } from "@/lib/engine/types";
+import type { Outcome, RunEvent, RunOptions, RunReport, RunResult, Span, StoredRun, WhyNot } from "@/lib/engine/types";
+import { explainDecision } from "@/lib/engine/whyNot";
 
 // Runs one case end to end and streams every event to `sink`. Never throws: a failure becomes a result.
 export async function executeRun(options: RunOptions, sink: (event: RunEvent) => void): Promise<StoredRun> {
@@ -82,7 +83,7 @@ export async function executeRun(options: RunOptions, sink: (event: RunEvent) =>
   return stored;
 }
 
-function finish(ctx: RunContext, outcome: Outcome, summary: string, memoryHit: boolean, pattern: string | null, report: RunReport | null): RunResult {
+function finish(ctx: RunContext, outcome: Outcome, summary: string, memoryHit: boolean, pattern: string | null, report: RunReport | null, whyNot: WhyNot | null = null): RunResult {
   const durationMs = ctx.now();
   // Compute time is the one cost that depends on how long the run took.
   const computeUsd = (durationMs / 1000) * 0.00002;
@@ -99,6 +100,7 @@ function finish(ctx: RunContext, outcome: Outcome, summary: string, memoryHit: b
     chainValid: ctx.chain.verify(),
     cost: { ...ctx.cost, totalUsd: ctx.cost.llmUsd + ctx.cost.infraUsd },
     report,
+    whyNot,
   };
 }
 
@@ -143,6 +145,8 @@ async function coordinate(ctx: RunContext, instruction: string, forcedTxn?: stri
 
     const decision = await decide(ctx, root, s, diag);
     ctx.log("coordinator", "info", `Decision: ${decision.action}. ${decision.rationale}`);
+    const whyNot = explainDecision(s, diag, decision);
+    ctx.log("coordinator", "info", `${whyNot.question} ${whyNot.answer}`);
 
     // The local model writes the email subject line while Resolution works. It can be slow on a laptop, so it overlaps.
     const draft = startDraft(ctx, root, s, decision, diag);
@@ -162,6 +166,6 @@ async function coordinate(ctx: RunContext, instruction: string, forcedTxn?: stri
         : res.outcome === "escalated"
           ? `Handled safely in ${seconds} s. A human decision is still needed.`
           : `Could not complete the fix. ${res.verification}.`;
-    return { result: finish(ctx, res.outcome, summary, diag.memoryHit, s.failureCode, report), txn, pattern: s.failureCode };
+    return { result: finish(ctx, res.outcome, summary, diag.memoryHit, s.failureCode, report, whyNot), txn, pattern: s.failureCode };
   });
 }

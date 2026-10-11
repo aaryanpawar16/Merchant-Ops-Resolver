@@ -16,6 +16,18 @@ export const OUTCOME_STYLE: Record<string, { label: string; className: string }>
   failed: { label: "Failed", className: "border-ember/60 text-ember" },
 };
 
+// The explanation of a decision as one cell of text, for the CSV exports. Empty for results stored before it existed.
+export function whyNotText(result: BatchCaseResult): string {
+  const why = result.whyNot;
+  if (!why) return "";
+  // Items are whole sentences, so drop their final full stop before joining and put one back at the end.
+  const bare = (text: string) => text.replace(/[.\s]+$/, "");
+  const parts = [why.answer];
+  if (why.blockers.length > 0) parts.push(`${why.automatic ? "Held back" : "Stopped by"}: ${why.blockers.map((b) => `${b.rule} (${bare(b.detail)})`).join("; ")}.`);
+  if (why.wouldChange.length > 0) parts.push(`What would change it: ${why.wouldChange.map(bare).join("; ")}.`);
+  return parts.join(" ");
+}
+
 // What a person has to do next when the agents stop. Written for the escalation queue.
 export function humanNextStep(result: BatchCaseResult): string {
   // When the agents could not confirm a cause they changed nothing, so do not describe steps they never took.

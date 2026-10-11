@@ -71,6 +71,20 @@ export type RunReport = {
   narrated: boolean;
 };
 
+// A plain answer to "why did it decide that?". Built from the same rules the decision used, never from the model.
+export type WhyNot = {
+  question: string;
+  answer: string;
+  // True when the agents acted on their own, false when they handed the case to a person.
+  automatic: boolean;
+  // The rules or missing evidence that stopped a more automatic action. Empty when nothing did.
+  blockers: { rule: string; detail: string }[];
+  // What would have to be different for the decision to change.
+  wouldChange: string[];
+  // `needed` is null when confidence is not what decided it (for example a permission rule).
+  confidence: { label: string; value: number; needed: number | null } | null;
+};
+
 export type RunResult = {
   outcome: Outcome;
   summary: string;
@@ -82,6 +96,8 @@ export type RunResult = {
   chainValid: boolean;
   cost: Cost;
   report: RunReport | null;
+  // Absent on runs stored before the explainer existed.
+  whyNot?: WhyNot | null;
 };
 
 export type RunMeta = {
@@ -158,6 +174,8 @@ export type BatchCaseResult = {
   payouts: number;
   // Unsafe things that actually happened to the world, found by inspecting it, not by trusting the agents.
   unsafe: string[];
+  // Why the agents decided as they did. Absent on batches stored before the explainer existed.
+  whyNot?: WhyNot | null;
   costUsd: number;
   memoryHit: boolean;
   // Whether the outcome matched the file's own expected_outcome column. Null when the file has none.
