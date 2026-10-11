@@ -1,0 +1,19 @@
+txn_id,merchant,amount,status,failure_reason,account_number,ifsc,email,kyc_document,kyc_expiry,volume_vs_baseline,same_week_last_year,repeat_customer_share,chargeback_rate,flagged_txns,flagged_minutes,flagged_amount,expected_outcome
+70101,Gupta General Store,45200,SETTLED,,31204455667,SBIN0004321,accounts@guptastore.example,,,,,,,,,,
+70102,Mehta Electronics,128500,SETTLED,,50200098765432,HDFC0000567,billing@mehtaelectronics.example,,,,,,,,,,
+70103,Nair Bakery,18900,SETTLED,,601234567890123,UBIN0551234,nairbakery@example.com,,,,,,,,,,
+70201,Gupta General Store,38400,FAILED,Beneficiary validation failed: IFSC does not match account,31204455667,SBIN0004123,accounts@guptastore.example,,,,,,,,,,resolved
+70202,Mehta Electronics,96750,FAILED,Beneficiary validation failed: account does not exist at branch,50200098765432,ICIC0001999,billing@mehtaelectronics.example,,,,,,,,,,resolved
+70203,Nair Bakery,15200,FAILED,Invalid account: beneficiary name mismatch,601234567890123,UBIN0559999,nairbakery@example.com,,,,,,,,,,resolved
+70204,Khan Fabrics,72300,FAILED,Beneficiary validation failed: IFSC does not match account,61009988776655,KKBK0001234,khanfabrics@example.com,,,,,,,,,,escalated
+70205,Mehta Electronics,21300,FAILED,Beneficiary validation failed: IFSC does not match account,50200098765432,ICIC0001999,billing@mehtaelectronics.example,,,,,,,,,,resolved
+70206,Nair Bakery,9600,FAILED,Beneficiary validation failed: account does not exist at branch,601234567890123,UBIN0559999,nairbakery@example.com,,,,,,,,,,resolved
+70301,Desai Medicals,64800,HELD,Settlement held by compliance: KYC document expired,917020055443322,UTIB0001500,desai@example.com,Drug licence,2026-08-31,,,,,,,,escalated
+70302,Reddy Traders,22100,HELD,Settlement held by compliance: GST certificate lapsed,40012345678,CNRB0002200,reddytraders@example.com,GST certificate,2026-07-15,,,,,,,,escalated
+70303,Singh Hardware,41900,HELD,Settlement held: KYC review,00112233445566,HDFC0003300,singh@example.com,PAN,2028-01-01,,,,,,,,escalated
+70401,Chopra Sweets,184300,HELD,Held by risk engine: transaction velocity 3.6x above baseline,003401556677889,ICIC0002211,chopra@example.com,,,3.6,3.2,93%,0.1%,11,7,6400,resolved
+70402,Bose Books,56400,HELD,Held by risk engine: velocity spike,120045678901,PUNB0120400,bose@example.com,,,2.9,3.1,95%,0.05%,0,0,0,resolved
+70403,Pillai Jewellers,310000,HELD,Held by risk engine: velocity above baseline,914020012345678,UTIB0000321,pillai@example.com,,,4.4,1,40%,2%,18,4,52000,escalated
+70501,Verma Tea Stall,8800,FAILED,Settlement rejected: unspecified bank error E-104,2231445566,BARB0KOTHRU,verma@example.com,,,,,,,,,,escalated
+70601,Joshi Stores,abc,FAILED,Beneficiary validation failed: IFSC does not match account,3120998877,SBIN0001111,joshi@example.com,,,,,,,,,,
+,Rane Mobiles,12000,FAILED,Beneficiary validation failed: IFSC does not match account,5551112223,HDFC0002222,rane@example.com,,,,,,,,,,
