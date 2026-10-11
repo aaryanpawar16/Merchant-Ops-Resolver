@@ -1,0 +1,13 @@
+<pasted_content id="eb90">
+PS C:\WINDOWS\system32> cd F:\Coding\merchant-ops-resolver
+PS F:\Coding\merchant-ops-resolver> git push -u origin main
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git push -u origin main
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS F:\Coding\merchant-ops-resolver>
+</pasted_content id="eb90">
