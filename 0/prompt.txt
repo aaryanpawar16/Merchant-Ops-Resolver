@@ -1,0 +1,100 @@
+0.04s
+Coordinator
+Instruction received: "Sharma Kirana's settlement for txn #48213 failed. Investigate and resolve."
+0.04s
+Coordinator
+get_settlement(48213)
+0.30s
+Coordinator
+Case: Beneficiary validation failed: account does not exist at branch for IFSC HDFC0001234
+0.30s
+Coordinator
+Plan: Investigation finds the cause, Resolution applies only what policy allows and verifies it against the real system, Closure documents and informs the merchant.
+0.30s
+Coordinator
+Entire: saved ckpt_1_5a8b35e (plan)
+0.31s
+Investigation
+search_memory(IFSC_ACCOUNT_MISMATCH, entire)
+0.44s
+Investigation
++Entire hit: 3 similar cases resolved. Skipping the full sweep, running 1 targeted check.
+0.44s
+Investigation
+verify_beneficiary(50100234567890, HDFC0001234)
+1.08s
+Investigation
+Finding (97%): The IFSC on file (HDFC0001234) is wrong. Account **********7890 is held at State Bank of India (SBIN0000456).
+1.08s
+Investigation
+Entire: saved ckpt_2_94a69a8 (diagnosis)
+1.08s
+Coordinator
+Decision: correct_ifsc. The IFSC on file (HDFC0001234) is wrong. Account **********7890 is held at State Bank of India (SBIN0000456).
+1.20s
+Resolution
+Entire: saved ckpt_3_22a92cf (pre-fix)
+1.21s
+Resolution
+policy_check(update_bank_details)
+1.30s
+Resolution
+Entire: saved ckpt_4_7366d62 (policy)
+1.30s
+Resolution
+update_bank_ifsc(m_1001, SBIN0000456)
+1.52s
+Resolution
+Entire: saved ckpt_5_e37ad8f (update_ifsc)
+1.53s
+Resolution
+retrigger_settlement(48213, NEFT, idem_run_b7477a42_48213)
+1.83s
+Resolution
+Entire: saved ckpt_6_4d330e3 (retrigger)
+1.83s
+Resolution
+get_settlement(48213, verify)
+2.07s
+Resolution
+Status is PROCESSING, checking again.
+2.38s
+Resolution
+get_settlement(48213, verify)
+2.62s
+Resolution
++status=SETTLED, INR 84,250 confirmed via API
+2.63s
+Closure
+write_kb(48213)
+2.88s
+Closure
++Knowledge base article KB-48213 written.
+21.59s
+Closure
+!llama2 took longer than 20 s, so the built-in wording was used
+21.61s
+Closure
+notify_merchant(m_1001, email)
+21.90s
+Closure
++Merchant notified by email.
+21.92s
+Closure
+Entire: saved ckpt_7_c7539a1 (closed)
+22.05s
+Closure
+Entire: pattern saved, so the next similar case starts with this playbook.Resolved and verified
+22.1 s / $0.0044
+Settlement 48213 verified as settled in 22.1 s.
+
+Entire memory hit. This case started from a saved playbook, so it skipped the full sweep.
+
+Reused a playbook from Entire memory
+IFSC corrected to SBIN0000456, settlement retriggered
+status=SETTLED, INR 84,250 confirmed via API
+Message sent to the merchant
+built-in wording
+Hello Sharma Kirana team, the bank code on file for your payout account was wrong. We corrected it and re-sent your payout of INR 84,250 (txn 48213). It has now settled. You do not need to do anything.
+Knowledge base entry
+IFSC_ACCOUNT_MISMATCH: Bank IFSC code mismatch. Fix: IFSC corrected to SBIN0000456, settlement retriggered. Evidence tools: verify_beneficiary. Outcome: resolved.
