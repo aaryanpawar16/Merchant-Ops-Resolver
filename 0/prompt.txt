@@ -1,0 +1,26 @@
+<pasted_content id="eb90">
+✓ Login complete (signed in at https://in.auth.entire.io).
+PS F:\Coding\merchant-ops-resolver> entire agent list
+Agents:
+    antigravity
+    claude-code
+    codex
+    copilot-cli
+    cursor
+    factoryai-droid
+    opencode
+    pi
+
+No agents installed. Use 'entire agent add <name>' to install hooks.
+PS F:\Coding\merchant-ops-resolver> entire enable --agent claude-code
+  Agent: Claude Code
+  Installed 9 hooks for Claude Code - Anthropic's CLI coding assistant
+  ✓ Configured project
+    .entire/settings.json
+┃ Import existing Claude Code sessions into Entire? (optional)
+┃ 1 session from the last 30 days. Enter to confirm.
+┃
+┃                       Import     Skip
+
+←/→ toggle • enter submit • y Import • n Skip
+</pasted_content id="eb90">
