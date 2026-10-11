@@ -1,0 +1,103 @@
+<pasted_content id="eb90">
+0.03s
+Coordinator
+Instruction received: "Sharma Kirana's settlement for txn #48213 failed. Investigate and resolve."
+0.03s
+Coordinator
+get_settlement(48213)
+0.30s
+Coordinator
+Case: Beneficiary validation failed: account does not exist at branch for IFSC HDFC0001234
+0.30s
+Coordinator
+Plan: Investigation finds the cause, Resolution applies only what policy allows and verifies it against the real system, Closure documents and informs the merchant.
+0.31s
+Coordinator
+Entire: saved ckpt_1_5a8b35e (plan)
+0.31s
+Investigation
+search_memory(IFSC_ACCOUNT_MISMATCH, entire)
+0.44s
+Investigation
++Entire hit: 3 similar cases resolved. Skipping the full sweep, running 1 targeted check.
+0.44s
+Investigation
+verify_beneficiary(50100234567890, HDFC0001234)
+1.11s
+Investigation
+Finding (97%): The IFSC on file (HDFC0001234) is wrong. Account **********7890 is held at State Bank of India (SBIN0000456).
+1.11s
+Investigation
+Entire: saved ckpt_2_94a69a8 (diagnosis)
+1.12s
+Coordinator
+Decision: correct_ifsc. The IFSC on file (HDFC0001234) is wrong. Account **********7890 is held at State Bank of India (SBIN0000456).
+1.22s
+Resolution
+Entire: saved ckpt_3_fcb5e49 (pre-fix)
+1.22s
+Resolution
+policy_check(update_bank_details)
+1.31s
+Resolution
+Entire: saved ckpt_4_a52fe30 (policy)
+1.31s
+Resolution
+update_bank_ifsc(m_1001, SBIN0000456)
+1.60s
+Resolution
+Entire: saved ckpt_5_dbea540 (update_ifsc)
+1.60s
+Resolution
+retrigger_settlement(48213, NEFT, idem_run_c60779d5_48213)
+2.82s
+Resolution
+xbank API timeout (504) after 1.2 s
+2.82s
+Resolution
++Entire: resumed from ckpt_5_dbea540 (update_ifsc). 2 finished steps will not repeat.
+2.82s
+Resolution
+Strategy: switch rail NEFT to IMPS, same idempotency key so a double payout is impossible.
+3.19s
+Resolution
+retrigger_settlement(48213, IMPS, idem_run_c60779d5_48213)
+3.49s
+Resolution
+Entire: saved ckpt_6_ceaef8f (retrigger)
+3.49s
+Resolution
+get_settlement(48213, verify)
+3.72s
+Resolution
+Status is PROCESSING, checking again.
+4.04s
+Resolution
+get_settlement(48213, verify)
+4.32s
+Resolution
++status=SETTLED, INR 84,250 confirmed via API
+4.34s
+Closure
+write_kb(48213)
+4.60s
+Closure
++Knowledge base article KB-48213 written.
+4.60s
+Closure
+Case is verified. Waiting up to 15 s for llama2 to write the email subject line.
+16.21s
+Closure
+notify_merchant(m_1001, email)
+16.49s
+Closure
++Merchant notified by email. Subject line written by llama2.
+16.49s
+Closure
+Entire: saved ckpt_7_f8fa0e4 (closed)
+16.50s
+Closure
+Entire: pattern saved, so the next similar case starts with this playbook.
+</pasted_content id="eb90">
+
+    ccheck it
