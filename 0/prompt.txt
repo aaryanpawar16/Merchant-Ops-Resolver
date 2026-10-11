@@ -1,0 +1,106 @@
+<pasted_content id="eb90">
+○ Compiling /api/status ...
+ GET /api/status 200 in 2.7s (next.js: 1943ms, application-code: 713ms)
+ GET / 200 in 1887ms (next.js: 9ms, application-code: 1878ms)
+ GET / 200 in 2.7s (next.js: 625ms, application-code: 2.1s)
+✓ Compiled in 63ms
+ GET / 200 in 295ms (next.js: 4ms, application-code: 291ms)
+✓ Compiled in 65ms
+ GET / 200 in 193ms (next.js: 8ms, application-code: 185ms)
+✓ Compiled in 2ms
+ GET / 200 in 346ms (next.js: 11ms, application-code: 335ms)
+✓ Compiled in 2ms
+ GET / 200 in 300ms (next.js: 5ms, application-code: 295ms)
+✓ Compiled in 2ms
+ GET / 200 in 285ms (next.js: 3ms, application-code: 282ms)
+✓ Compiled in 3ms
+ GET / 200 in 233ms (next.js: 7ms, application-code: 226ms)
+✓ Compiled in 2ms
+ GET / 200 in 253ms (next.js: 8ms, application-code: 244ms)
+✓ Compiled in 3ms
+ GET / 200 in 374ms (next.js: 12ms, application-code: 362ms)
+✓ Compiled in 2ms
+ GET / 200 in 221ms (next.js: 6ms, application-code: 215ms)
+✓ Compiled in 16ms
+ GET / 200 in 326ms (next.js: 6ms, application-code: 320ms)
+✓ Compiled in 2ms
+ GET / 200 in 188ms (next.js: 5ms, application-code: 183ms)
+✓ Compiled in 1ms
+ GET / 200 in 216ms (next.js: 4ms, application-code: 212ms)
+✓ Compiled in 2ms
+ GET / 200 in 190ms (next.js: 3ms, application-code: 187ms)
+✓ Compiled in 2ms
+ GET / 200 in 139ms (next.js: 3ms, application-code: 136ms)
+✓ Compiled in 1ms
+ GET / 200 in 219ms (next.js: 10ms, application-code: 209ms)
+✓ Compiled in 10ms
+ GET / 200 in 199ms (next.js: 3ms, application-code: 197ms)
+✓ Compiled in 3ms
+ GET / 200 in 264ms (next.js: 16ms, application-code: 248ms)
+✓ Compiled in 5ms
+ GET / 200 in 249ms (next.js: 8ms, application-code: 241ms)
+✓ Compiled in 1ms
+ GET / 200 in 264ms (next.js: 12ms, application-code: 252ms)
+✓ Compiled in 8ms
+ GET / 200 in 165ms (next.js: 6ms, application-code: 159ms)
+✓ Compiled in 1ms
+ GET / 200 in 275ms (next.js: 3ms, application-code: 272ms)
+✓ Compiled in 1ms
+ GET / 200 in 154ms (next.js: 4ms, application-code: 151ms)
+✓ Compiled in 1ms
+ GET / 200 in 138ms (next.js: 1.8ms, application-code: 137ms)
+✓ Compiled in 4ms
+ GET / 200 in 131ms (next.js: 3ms, application-code: 128ms)
+✓ Compiled in 1ms
+ GET / 200 in 151ms (next.js: 1.4ms, application-code: 149ms)
+✓ Compiled in 1ms
+ GET / 200 in 121ms (next.js: 3ms, application-code: 118ms)
+✓ Compiled in 3ms
+ GET / 200 in 154ms (next.js: 2ms, application-code: 152ms)
+✓ Compiled in 2ms
+ GET / 200 in 196ms (next.js: 5ms, application-code: 192ms)
+✓ Compiled in 2ms
+ GET / 200 in 166ms (next.js: 3ms, application-code: 163ms)
+✓ Compiled in 3ms
+ GET / 200 in 141ms (next.js: 3ms, application-code: 139ms)
+✓ Compiled in 2ms
+ GET / 200 in 389ms (next.js: 9ms, application-code: 380ms)
+✓ Compiled in 4ms
+ GET / 200 in 270ms (next.js: 6ms, application-code: 264ms)
+✓ Compiled in 4ms
+ GET / 200 in 326ms (next.js: 3ms, application-code: 323ms)
+✓ Compiled in 3ms
+ GET / 200 in 190ms (next.js: 4ms, application-code: 186ms)
+✓ Compiled in 3ms
+ GET / 200 in 250ms (next.js: 1.4ms, application-code: 248ms)
+✓ Compiled in 3ms
+ GET / 200 in 352ms (next.js: 7ms, application-code: 345ms)
+✓ Compiled in 2ms
+ GET / 200 in 224ms (next.js: 10ms, application-code: 214ms)
+✓ Compiled in 1ms
+ GET / 200 in 238ms (next.js: 4ms, application-code: 234ms)
+✓ Compiled in 1ms
+ GET / 200 in 247ms (next.js: 8ms, application-code: 239ms)
+✓ Compiled in 3ms
+ GET / 200 in 196ms (next.js: 4ms, application-code: 193ms)
+✓ Compiled in 2ms
+ GET / 200 in 238ms (next.js: 9ms, application-code: 229ms)
+✓ Compiled in 3ms
+ GET / 200 in 364ms (next.js: 9ms, application-code: 355ms)
+✓ Compiled in 1ms
+ GET / 200 in 218ms (next.js: 2ms, application-code: 216ms)
+✓ Compiled in 5ms
+ GET / 200 in 110ms (next.js: 1.5ms, application-code: 108ms)
+✓ Compiled in 2ms
+ GET / 200 in 118ms (next.js: 2ms, application-code: 116ms)
+✓ Compiled in 3ms
+ GET / 200 in 159ms (next.js: 2ms, application-code: 157ms)
+✓ Compiled in 1ms
+ GET / 200 in 109ms (next.js: 4ms, application-code: 105ms)
+✓ Compiled in 3ms
+ GET / 200 in 104ms (next.js: 5ms, application-code: 99ms)
+✓ Compiled in 1ms
+ GET / 200 in 135ms (next.js: 4ms, application-code: 132ms)
+PS F:\Coding\merchant-ops-resolver> ^C
+PS F:\Coding\merchant-ops-resolver>
+</pasted_content id="eb90">
