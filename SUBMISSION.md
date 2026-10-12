@@ -19,7 +19,7 @@ Differentiators:
 | --- | --- |
 | Public repository | https://github.com/aaryanpawar16/Merchant-Ops-Resolver |
 | Live demo | https://merchant-ops-resolver.onrender.com (free plan: the first request after a quiet period takes about a minute) |
-| Demo video | TODO |
+| Demo video | https://youtu.be/Hm-50U2blq8 |
 | #neatHack posts | https://x.com/aaryanpawar167/status/2109351713455190303 |
 | neatlogs trace: a run where a call failed and the agent recovered | Exported in the repo: [evidence/neatlogs/trace-b53629b75313dbca1028a5ec5ef5083b.md](https://github.com/aaryanpawar16/Merchant-Ops-Resolver/blob/main/evidence/neatlogs/trace-b53629b75313dbca1028a5ec5ef5083b.md). Trace ID `b53629b75313dbca1028a5ec5ef5083b` |
 | neatlogs before/after traces (careless retry, then one idempotency key) | [before](https://github.com/aaryanpawar16/Merchant-Ops-Resolver/blob/main/evidence/neatlogs/trace-480214b47010870fcaec8fe505d5197e.md) (`480214b47010870fcaec8fe505d5197e`) and [after](https://github.com/aaryanpawar16/Merchant-Ops-Resolver/blob/main/evidence/neatlogs/trace-d49e123c5f2fbb81817ab6154aa2f129.md) (`d49e123c5f2fbb81817ab6154aa2f129`). See the [evidence README](https://github.com/aaryanpawar16/Merchant-Ops-Resolver/tree/main/evidence/neatlogs) |
@@ -83,4 +83,4 @@ The merchants, settlements, bank directory, KYC and risk data, and the bank, KYC
 - [ ] At least one commit with an `Entire-Checkpoint` trailer (`entire checkpoint explain HEAD`), and the checkpoint link opens for reviewers. Entire was enabled mid-build, so say so rather than claiming full coverage.
 - [x] neatlogs traces saved as exports in `evidence/neatlogs/`: one run where a call failed and the agent recovered, and a before/after pair. Replace with public share links if neatlogs offers them.
 - [ ] At least one #neatHack post published.
-- [ ] Demo video recorded.
+- [x] Demo video recorded: https://youtu.be/Hm-50U2blq8

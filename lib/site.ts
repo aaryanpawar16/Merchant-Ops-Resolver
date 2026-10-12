@@ -7,7 +7,7 @@ export const site = {
     // The public repository.
     github: "https://github.com/aaryanpawar16/Merchant-Ops-Resolver",
     // The demo video.
-    demo: "#",
+    demo: "https://youtu.be/Hm-50U2blq8",
     // A public post tagged #neatHack.
     posts: "https://x.com/aaryanpawar167/status/2109351713455190303",
     // neatlogs traces of real runs, exported as Markdown in the repo (the dashboard project is private).

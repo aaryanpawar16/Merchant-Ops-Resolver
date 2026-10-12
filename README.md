@@ -2,6 +2,8 @@
 
 An autonomous multi-agent system that investigates, fixes, verifies and closes merchant operations issues such as a failed settlement. Give it one instruction, and four agents handle the case.
 
+**Demo video: https://youtu.be/Hm-50U2blq8**
+
 **Live demo: https://merchant-ops-resolver.onrender.com** (free plan: after a quiet period the first request takes about a minute while it wakes up). Tracing is off there, and no model server is attached, so it uses the built-in wording. Decisions are identical.
 
 - `/` is the landing page.
