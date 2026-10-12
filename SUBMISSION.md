@@ -20,9 +20,11 @@ Differentiators:
 | Public repository | https://github.com/aaryanpawar16/Merchant-Ops-Resolver |
 | Live demo | https://merchant-ops-resolver.onrender.com (free plan: the first request after a quiet period takes about a minute) |
 | Demo video | TODO |
-| #neatHack posts | TODO |
-| neatlogs shared trace (a run where a call failed and the agent recovered) | TODO |
-| neatlogs before/after traces | TODO |
+| #neatHack posts | https://x.com/aaryanpawar167/status/2109351713455190303 |
+| neatlogs trace: a run where a call failed and the agent recovered | Exported in the repo: [evidence/neatlogs/trace-b53629b75313dbca1028a5ec5ef5083b.md](https://github.com/aaryanpawar16/Merchant-Ops-Resolver/blob/main/evidence/neatlogs/trace-b53629b75313dbca1028a5ec5ef5083b.md). Trace ID `b53629b75313dbca1028a5ec5ef5083b` |
+| neatlogs before/after traces (careless retry, then one idempotency key) | [before](https://github.com/aaryanpawar16/Merchant-Ops-Resolver/blob/main/evidence/neatlogs/trace-480214b47010870fcaec8fe505d5197e.md) (`480214b47010870fcaec8fe505d5197e`) and [after](https://github.com/aaryanpawar16/Merchant-Ops-Resolver/blob/main/evidence/neatlogs/trace-d49e123c5f2fbb81817ab6154aa2f129.md) (`d49e123c5f2fbb81817ab6154aa2f129`). See the [evidence README](https://github.com/aaryanpawar16/Merchant-Ops-Resolver/tree/main/evidence/neatlogs) |
+
+The neatlogs traces live in a private project, and we could not find a way to make a trace public in the dashboard, so the traces are provided as Markdown exports in the repo, with their trace IDs. The "before" trace is a deliberate demonstration mode (a retry with a fresh idempotency key), not normal behaviour.
 | Entire checkpoint | https://entire.io/gh/aaryanpawar16/Merchant-Ops-Resolver/commit/102712c906c846377e331764777a03b42dabff00 |
 | cfo.ai business plan | https://cfo.ai/s/zjvRY4EQYV-5T8uH |
 
@@ -79,6 +81,6 @@ The merchants, settlements, bank directory, KYC and risk data, and the bank, KYC
 - [ ] Fill the links in `lib/site.ts` (any link left as `#` is hidden on the site).
 - [ ] Repository is public, with commits made during the hackathon.
 - [ ] At least one commit with an `Entire-Checkpoint` trailer (`entire checkpoint explain HEAD`), and the checkpoint link opens for reviewers. Entire was enabled mid-build, so say so rather than claiming full coverage.
-- [ ] Two neatlogs traces saved: before and after a change, and one run with a failed call that recovered (`/console` with chaos on, or `/eval?run=timeout`).
+- [x] neatlogs traces saved as exports in `evidence/neatlogs/`: one run where a call failed and the agent recovered, and a before/after pair. Replace with public share links if neatlogs offers them.
 - [ ] At least one #neatHack post published.
 - [ ] Demo video recorded.

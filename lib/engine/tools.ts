@@ -28,15 +28,18 @@ function settlementOf({ ctx }: Ctx, txn: string): Settlement {
 
 // ---- reads -------------------------------------------------------------------------------------
 
+// What the bank API shows an agent about a settlement. The bank's payout counter and idempotency-key store are internal
+// to the bank. Showing them would let an agent spot a double payout that a real bank API would not reveal, so only the
+// world (and the scorecard) can see them. Every read an agent can make must go through this.
+function bankView(s: Settlement): SettlementView {
+  const view: Partial<Settlement> = structuredClone(s);
+  delete view.payouts;
+  delete view.idempotencyKeys;
+  return view as SettlementView;
+}
+
 export function getSettlement(c: Ctx, txn: string) {
-  return c.ctx.tool(c.agent, c.parent, "get_settlement", { txn }, { latency: jitter(150) }, (): SettlementView => {
-    // The bank's payout counter and idempotency-key store are internal to the bank. Showing them to an agent would let
-    // it spot a double payout that a real bank API would not reveal, so only the world (and the scorecard) can see them.
-    const view: Partial<Settlement> = structuredClone(settlementOf(c, txn));
-    delete view.payouts;
-    delete view.idempotencyKeys;
-    return view as SettlementView;
-  });
+  return c.ctx.tool(c.agent, c.parent, "get_settlement", { txn }, { latency: jitter(150) }, (): SettlementView => bankView(settlementOf(c, txn)));
 }
 
 export function getMerchantProfile(c: Ctx, merchantId: string) {
@@ -199,5 +202,5 @@ export function notifyMerchant(c: Ctx, merchantId: string, channel: string, body
 }
 
 export function pollSettlement(c: Ctx, txn: string) {
-  return c.ctx.tool(c.agent, c.parent, "get_settlement", { txn, purpose: "verify" }, { latency: jitter(180) }, () => structuredClone(settlementOf(c, txn)));
+  return c.ctx.tool(c.agent, c.parent, "get_settlement", { txn, purpose: "verify" }, { latency: jitter(180) }, (): SettlementView => bankView(settlementOf(c, txn)));
 }

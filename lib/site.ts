@@ -9,9 +9,9 @@ export const site = {
     // The demo video.
     demo: "#",
     // A public post tagged #neatHack.
-    posts: "#",
-    // A shared trace of a real run in neatlogs.
-    neatlogs: "#",
+    posts: "https://x.com/aaryanpawar167/status/2109351713455190303",
+    // neatlogs traces of real runs, exported as Markdown in the repo (the dashboard project is private).
+    neatlogs: "https://github.com/aaryanpawar16/Merchant-Ops-Resolver/tree/main/evidence/neatlogs",
     // The Entire checkpoint of this project's build (https://entire.io/gh/OWNER/REPO/commit/SHA).
     entire: "https://entire.io/gh/aaryanpawar16/Merchant-Ops-Resolver/commit/102712c906c846377e331764777a03b42dabff00",
     // The business plan built in cfo.ai.
