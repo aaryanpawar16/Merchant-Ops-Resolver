@@ -1,0 +1,155 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4QA25RRWBN256J0YW9ECV52",
+  "session_id": "87157968-d80e-479c-b237-dd66e18138a5",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-12T05:41:15.6280914Z",
+  "branch": "main",
+  "checkpoints_count": 13,
+  "save_step_count": 9,
+  "files_touched": [
+    "SUBMISSION.md",
+    "evidence/neatlogs/README.md",
+    "lib/engine/tools.ts",
+    "lib/site.ts"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-sonnet-5-5",
+  "turn_id": "1633ac60b9b9",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 1064,
+    "cache_creation_tokens": 3669578,
+    "cache_read_tokens": 220553689,
+    "output_tokens": 777592,
+    "api_call_count": 533
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_013TvqaAKc4WggpX2bqMpBXc",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "claude-api"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "2b327dcd46c7",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 102,
+        "end": 103,
+        "entry_ids": [
+          "283963d7-e8b3-4b34-8ba2-bdf1416e3cb6"
+        ],
+        "tool_use_id": "toolu_013TvqaAKc4WggpX2bqMpBXc"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_013TvqaAKc4WggpX2bqMpBXc"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: claude-api",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 48
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-12T05:41:14.4764289Z",
+    "agent_lines": 32,
+    "agent_removed": 9,
+    "human_added": 2139,
+    "human_modified": 9,
+    "human_removed": 0,
+    "total_committed": 2178,
+    "total_lines_changed": 2189,
+    "agent_percentage": 1.8730013704888075,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 2159,
+      "user_lines_removed": 0,
+      "agent_lines_added": 26,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "evidence/neatlogs/trace-7553de1d09346de013d8b4df2d35de6f.md": 717,
+        "evidence/neatlogs/trace-7c1b94a52117fb589d095d80fa4c1e8c.md": 769,
+        "evidence/neatlogs/trace-be1212e21294e907626ae19d5dd5a45a.md": 673
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 39,
+      "agent_lines_removed": 9
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 39,
+      "agent_lines_removed": 9
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 41,
+      "agent_lines_removed": 11
+    },
+    {
+      "checkpoint_number": 7,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 41,
+      "agent_lines_removed": 11
+    },
+    {
+      "checkpoint_number": 8,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 41,
+      "agent_lines_removed": 11
+    },
+    {
+      "checkpoint_number": 9,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 41,
+      "agent_lines_removed": 11
+    },
+    {
+      "checkpoint_number": 10,
+      "user_lines_added": 2139,
+      "user_lines_removed": 2,
+      "agent_lines_added": 41,
+      "agent_lines_removed": 11,
+      "user_added_per_file": {
+        "evidence/neatlogs/README.md": 2,
+        "evidence/neatlogs/trace-480214b47010870fcaec8fe505d5197e.md": 759,
+        "evidence/neatlogs/trace-b53629b75313dbca1028a5ec5ef5083b.md": 665,
+        "evidence/neatlogs/trace-d49e123c5f2fbb81817ab6154aa2f129.md": 713
+      },
+      "user_removed_per_file": {
+        "evidence/neatlogs/README.md": 2
+      }
+    }
+  ]
+}
