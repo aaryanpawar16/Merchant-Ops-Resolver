@@ -20,7 +20,7 @@ Differentiators:
 | Public repository | https://github.com/aaryanpawar16/Merchant-Ops-Resolver |
 | Live demo | https://merchant-ops-resolver.onrender.com (free plan: the first request after a quiet period takes about a minute) |
 | Demo video | https://youtu.be/Hm-50U2blq8 |
-| #neatHack posts | https://x.com/aaryanpawar167/status/2109351713455190303 |
+| #neatHack posts | https://x.com/aaryanpawar167/status/2109351713455190303 , https://x.com/aaryanpawar167/status/2109660748020699399?s=20|
 | neatlogs trace: a run where a call failed and the agent recovered | Exported in the repo: [evidence/neatlogs/trace-b53629b75313dbca1028a5ec5ef5083b.md](https://github.com/aaryanpawar16/Merchant-Ops-Resolver/blob/main/evidence/neatlogs/trace-b53629b75313dbca1028a5ec5ef5083b.md). Trace ID `b53629b75313dbca1028a5ec5ef5083b` |
 | neatlogs before/after traces (careless retry, then one idempotency key) | [before](https://github.com/aaryanpawar16/Merchant-Ops-Resolver/blob/main/evidence/neatlogs/trace-480214b47010870fcaec8fe505d5197e.md) (`480214b47010870fcaec8fe505d5197e`) and [after](https://github.com/aaryanpawar16/Merchant-Ops-Resolver/blob/main/evidence/neatlogs/trace-d49e123c5f2fbb81817ab6154aa2f129.md) (`d49e123c5f2fbb81817ab6154aa2f129`). See the [evidence README](https://github.com/aaryanpawar16/Merchant-Ops-Resolver/tree/main/evidence/neatlogs) |
 
